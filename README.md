@@ -1,4 +1,4 @@
-# Movies-Library - V 1.1
+# Movies-Library - V 1.2
 
 **Author Name**: Abdullah Kadad
 
@@ -8,20 +8,28 @@
 
 ## Overview
 
-Simple Node-Express server, it has to routes one for the home page and the other for the favorites page.
-
-This server can handle 500 and 404 errors.
+A Node-Express server that has several routes, each one of these routes has specific job in movies searching process.
 
 ## Getting Started
 
-1. navigate main directory.
+1. Clone the repo to youe local machine.
 
-2. install all dependencies.
+2. Use terminal to run `npm install` to install all dependencies.
 
-3. use `node server.js` to run the code.
+3. Use `node server.js` to run the code.
 
 ## Project Features
 
-- Home page that show movies
+### Routes
 
-- Favorite Page that response with "Welcome to Favorite Page"
+- '/' Home page, shows a movie from local JSON file.
+
+- '/favorite' Page, response with "Welcome to Favorite Page".
+
+- '/trending' page, show trending movies.
+
+- '/search' page, search for movies by title and return several movies title-related.
+
+- '/discover' page, return several movies by year of release-date.
+
+- '/playingNow' page, returns a list of movies that are currently in theatres.
