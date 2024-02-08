@@ -1,4 +1,4 @@
-# Movies-Library - V 1.2
+# Movies-Library - V 1.3
 
 **Author Name**: Abdullah Kadad
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-A Node-Express server that has several routes, each one of these routes has specific job in movies searching process.
+A Node-Express server that has several routes, each one of these routes has specific job in searching, adding or listing movies.
 
 ## Getting Started
 
@@ -20,16 +20,18 @@ A Node-Express server that has several routes, each one of these routes has spec
 
 ## Project Features
 
-### Routes
+- '/Home' Route, Show a movie from local JSON file.
 
-- '/' Home page, shows a movie from local JSON file.
+- '/favorite' Route, Response with "Welcome to Favorite Page".
 
-- '/favorite' Page, response with "Welcome to Favorite Page".
+- '/trending' Route, Show trending movies.
 
-- '/trending' page, show trending movies.
+- '/search' Route, Search for movies by title and return several movies title-related.
 
-- '/search' page, search for movies by title and return several movies title-related.
+- '/discover' Route, Return several movies by year of release-date.
 
-- '/discover' page, return several movies by year of release-date.
+- '/playingNow' Route, Returns a list of movies that are currently in theatres.
 
-- '/playingNow' page, returns a list of movies that are currently in theatres.
+- '/addMovie' Route, Save a movies in DB.
+
+- '/getMovies' Route, Retrieve all movies from DB.
