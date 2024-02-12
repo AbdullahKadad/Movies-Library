@@ -1,4 +1,4 @@
-# Movies-Library - V 1.3
+# Movies-Library - V 1.4
 
 **Author Name**: Abdullah Kadad
 
@@ -34,4 +34,8 @@ A Node-Express server that has several routes, each one of these routes has spec
 
 - '/addMovie' Route, Save a movies in DB.
 
-- '/getMovies' Route, Retrieve all movies from DB.
+- '/getMovies' Route, Retrieve all movies from DB or retrieve movie if it's id provided.
+
+- '/UPDATE' Route, Update a movie comment based on id of that movie.
+
+- '/UPDATE' Route, Delete a movie based on it's id.
