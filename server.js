@@ -11,10 +11,14 @@ app.use(bodyParser.json());
 
 // DataBase things //
 const { Client } = require("pg");
-const url = `postgres://${process.env.DBNAME || "student"}:${
-  process.env.DMPASSWORD || "00000111"
-}@localhost:5432/movies`;
+const url = process.env.GLOBAL_DB;
 const client = new Client(url);
+
+// local database
+// const url = `postgres://${process.env.HOST_NAME || "student"}:${
+//   process.env.DB_PASSWORD || "00000111"
+// }@localhost:5432/${process.env.DB_NAME || "movies"}`;
+
 
 // PORT //
 const port = process.env.PORT || 3000;
@@ -22,7 +26,7 @@ const port = process.env.PORT || 3000;
 // Json Data //
 const data = require("./MovieData/data.json");
 
-// API //
+// API key//
 const apiKey = process.env.API_KEY;
 // API endpoints //
 const trendingMovies =
@@ -40,25 +44,25 @@ app.get("/discover", discoverHandler);
 app.get("/playingNow", playingNowHandler);
 app.post("/addMovie", addMovieHandler);
 app.get("/getMovies/:id?", getMoviesHandler);
-app.patch("/UPDATE/:id/comments", updataHandler);
+app.patch("/UPDATE/:id", updataHandler);
 app.delete("/DELETE/:id", deleteHandler);
 
 // Handlers //
 //Home
 function homeHandler(req, res) {
   let move = new Move(data.title, data.poster_path, data.overview);
-  res.json(move);
+  res.status(200).json(move);
 }
 //favorite
 function favoriteHandler(req, res) {
-  res.send("Welcome to Favorite Page");
+  res.status(200).send("Welcome to Favorite Page");
 }
 //trending
 function trendingHandler(req, res) {
   axios
     .get(`${trendingMovies}${apiKey}`)
     .then((result) => {
-      res.json(reshape(result.data.results));
+      res.status(200).json(reshape(result.data.results));
     })
     .catch((e) => {
       console.log(e.stack);
@@ -71,7 +75,7 @@ function searchHandler(req, res) {
   axios
     .get(`${searchMovies}${apiKey}&query=${title}`)
     .then((result) => {
-      res.json(reshape(result.data.results));
+      res.status(200).json(reshape(result.data.results));
     })
     .catch((e) => {
       console.log(e.stack);
@@ -84,7 +88,7 @@ function discoverHandler(req, res) {
   axios
     .get(`${discoverMovies}${apiKey}&primary_release_year=${year}`)
     .then((result) => {
-      res.json(reshape(result.data.results));
+      res.status(200).json(reshape(result.data.results));
     })
     .catch((e) => {
       console.log(e.stack);
@@ -96,7 +100,7 @@ function playingNowHandler(req, res) {
   axios
     .get(`${playingMovies}${apiKey}`)
     .then((result) => {
-      res.json(reshape(result.data.results));
+      res.status(200).json(reshape(result.data.results));
     })
     .catch((e) => {
       console.log(e.stack);
@@ -111,7 +115,7 @@ function addMovieHandler(req, res) {
   const values = [title, release_date, poster_path, overview, comments];
   client
     .query(query, values)
-    .then((result) => {
+    .then(() => {
       res.status(201).send(`Movie Saved Successfully`);
     })
     .catch((e) => {
@@ -179,7 +183,7 @@ function deleteHandler(req, res) {
         client
           .query(query, values)
           .then(() => {
-            res.status(204).send(`Movie deleted Successfully`);
+            res.status(204);
           })
           .catch((e) => {
             console.log(e.stack);
