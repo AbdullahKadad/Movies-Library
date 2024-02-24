@@ -8,6 +8,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors());
 
 // DataBase things //
 const { Client } = require("pg");
@@ -18,7 +19,6 @@ const client = new Client(url);
 // const url = `postgres://${process.env.HOST_NAME || "student"}:${
 //   process.env.DB_PASSWORD || "00000111"
 // }@localhost:5432/${process.env.DB_NAME || "movies"}`;
-
 
 // PORT //
 const port = process.env.PORT || 3000;
